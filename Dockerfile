@@ -8,14 +8,5 @@ ENV CARGO_TARGET_DIR=/tmp/target \
 RUN apt update -y \
     && apt install -y git curl
 
-ARG USER_NAME=rustuser
-ARG UID=1001
-ARG GID=1001
+WORKDIR /app
 
-RUN groupadd -g ${GID} ${USER_NAME} \
-    && useradd -m -u ${UID} -g ${GID} -s /bin/bash -d /home/${USER_NAME} ${USER_NAME}
-
-USER ${USER_NAME}
-
-RUN mkdir /home/${USER_NAME}/app
-WORKDIR /home/${USER_NAME}/app
